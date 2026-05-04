@@ -1,5 +1,6 @@
 # Dijital-Kapi-Gorevlisi
 🛡️ Dijital Kapı Görevlisi: Snort 3 ile Akıllı Trafik Analizi (Hafta 11-12)
+
 📋 Proje Geçmişi ve Amacı
 Projemizin 11. haftasında, Kali Linux makinemizi bir Router (Geçit) gibi yapılandırarak Windows 10 sanal makinesinin trafiğini kendi üzerimizden geçirmeyi başardık. Geçen hafta tcpdump aracıyla bu trafiği sadece pasif olarak izlemiştik.
 
