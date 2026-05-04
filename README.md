@@ -8,7 +8,7 @@ Bu haftaki hedefimiz (Hafta 12): Sadece izlemekle yetinmeyip, ağda olup bitenle
 1️⃣ Snort Kuralının Yazılması (Alarm Sistemi Kurulumu)
 Snort'a neye bakması gerektiğini söylemek için bir "imza" oluşturduk. Amacımız, ağdaki ICMP (Ping) paketlerini tespit edip özel bir alarm üretmekti.
 
-Dosya: /etc/snort/rules/local.rules
+Bash: sudo nano /etc/snort/rules/local.rules
 
 Kural:  alert icmp any any -> any any (msg:"Dikkat: Birisi Ping Atıyor!"; sid:1000001; rev:1;)
 
@@ -30,7 +30,7 @@ rev:1: Kuralın sürüm (revizyon) numarasıdır.
 Yazdığımız kuralın aktif olması için Snort 3'ü eth1 arayüzü (Windows 10'un bağlı olduğu kapı) üzerinden başlattık.
 
 Bash
-sudo snort -R /etc/snort/rules/local.rules -i eth1 --daq afpacket -A alert_fast
+sudo snort -R /etc/snort/rules/local.rules -i eth1 --daq afpacket -A alert_fast                                                                              
 Komutun Detaylı Analizi:
 
 sudo: Ağ trafiğine kanca atmak için gereken en üst düzey yönetici yetkisi.
