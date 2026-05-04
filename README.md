@@ -29,8 +29,9 @@ rev:1: Kuralın sürüm (revizyon) numarasıdır.
 2️⃣ Sistemin Canlı İzleme Modunda Çalıştırılması
 Yazdığımız kuralın aktif olması için Snort 3'ü eth1 arayüzü (Windows 10'un bağlı olduğu kapı) üzerinden başlattık.
 
-Bash
+Bash:
 sudo snort -R /etc/snort/rules/local.rules -i eth1 --daq afpacket -A alert_fast                                                                              
+
 Komutun Detaylı Analizi:
 
 sudo: Ağ trafiğine kanca atmak için gereken en üst düzey yönetici yetkisi.
