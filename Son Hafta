@@ -1,0 +1,29 @@
+🛡️ Dijital Kapı Görevlisi: Proje Final Sunum Planı
+
+
+1️⃣ Hafta 11: İzleme İstasyonu ve Temel Gözlem
+
+Bu aşamada Kali Linux'u bir yönlendirici (Router) haline getirdik ve trafiği pasif olarak izlemeye başladık.
+
+Kullanılan Komut: sudo tcpdump -i eth1 -n
+
+Analiz: Snort henüz devrede değilken, tcpdump ile eth1 arayüzünden geçen paketleri ham haliyle izledik. Bu, trafiğin Kali üzerinden başarıyla aktığını (forwarding) kanıtladığımız ilk aşamaydı.
+
+Görsel: Terminalde IP adreslerinin ve paket akışının ham şekilde aktığı tcpdump çıktısı
+
+
+2️⃣ Hafta 12: Snort ile Akıllı Alarm Sistemi
+Pasif izlemeden, kural tabanlı aktif saldırı tespitine geçtiğimiz aşama.
+Kural Dizini: /etc/snort/rules/local.rules içine şu satırı işledik: alert icmp any any -> any any (msg:"Dikkat: Birisi Ping Atıyor!"; sid:4896547; rev:1;)
+Çalıştırma Kodu:
+sudo snort -R /etc/snort/rules/local.rules -i eth1 --daq afpacket -A alert_fast
+Görsel: Windows makinesinden atılan pinglerin, Snort ekranında anlık "Dikkat: Birisi Ping Atıyor!" uyarısını tetiklediği an
+3️⃣ Hafta 13: VPN (WireGuard) Üzerinden Güvenli Yönetim
+Yöneticinin sisteme fiziksel olarak bağlı olmadan, güvenli bir tünel içinden logları okuması.
+Mantık: WireGuard (wg0) arayüzü kuruldu; log dosyaları bu tünel üzerinden şifreli şekilde okundu.
+Gözlem: Snort'un sadece fiziksel kartı değil, VPN arayüzünü de dinleyebildiği ve tünel içindeki hareketleri loglayabildiği gösterildi.
+Kısa Not: Loglar /var/log/snort/ altından VPN aracılığıyla güvenle takip edildi.
+4️⃣ Hafta 14: Port Tarama Tespiti ve Otomatik Engelleme
+Sistemin hem tespit hem de savunma (Olay Müdahale) kapasitesinin testi.
+Nmap Tespiti: Nmap ile yapılan taramalar sonucunda Snort "Port Scan Detected" uyarısını verdi.
+Otomatik Müdahale (Fail2Ban): Fail2Ban, Snort loglarındaki saldırgan IP'yi yakaladı ve iptables kurallarına ekleyerek saldırganı otomatik olarak yasakladı.
